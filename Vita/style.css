@@ -1,0 +1,512 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.logoimg, .logo{
+    width: 100%;
+    height: auto;
+    max-width: 150px;
+    min-width: 50px;
+}
+
+body{
+    font-family: 'Nunito', sans-serif;
+    background: url(imgs/hatter1.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.navbar{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+nav{
+    flex: 1;
+    text-align: right;
+}
+
+nav ul{
+    display: inline-block;
+    list-style-type: none;
+}
+
+nav li{
+    position: relative;
+    padding-bottom: 5px;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+nav ul li{
+    display: inline-block;
+    margin: 20px;
+}
+
+nav a:hover{
+    color: rgb(0, 0, 0);
+}
+
+nav a::before{
+    content: '';
+    display: block;
+    height: 5px;
+    background-color: #555;
+
+    position: absolute;
+    bottom: 0;
+    width: 0%;
+
+    transition: all ease-in-out 250ms;
+}
+
+nav a:hover::before{
+    width: 100%;
+}
+
+a{
+    text-decoration: none;
+    color: #555;
+}
+
+p{
+    color: #555;
+}
+
+.container{
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.row{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.col-2{
+    flex-basis: 50%;
+    min-width: 300px;
+
+}
+
+.col-2 img{
+    max-width: 100%;
+    padding: 50px 0;
+}
+.header{
+    background: radial-gradient(#fff,#8FF3AF);
+}
+
+.small-container{
+    max-width: 1080px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+h2{
+    text-align: center;
+}
+
+.list{
+    color: #555;
+    padding: 10px;
+    margin-top: 15px;
+    display: none;
+}
+
+.kosar{
+    color: #555;
+    padding: 10px;
+    margin-top: 15px;
+}
+.map{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+
+}
+.contact{
+    margin-top: 50px;
+    display: block;
+    text-align: center;
+    justify-content: center;
+}
+
+.header{
+    background: radial-gradient(#fff,#8FF3AF);
+}
+.formBox{
+    width: 380px;
+    height: 550px;
+    position: relative;
+    margin: 6% auto;
+    background: #fff;
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 15px;
+}
+.buttonBox{
+    width: 340px;
+    margin: 25px auto;
+    position: relative;
+    box-shadow: 0 0 20px 9px #0000001f;
+    border-radius: 30px;
+}
+.toggleBtn{
+    padding: 10px 30px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+}
+.btn{
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 180px;
+    height: 100%;
+    background: linear-gradient(to right,#fff,#8FF3AF);
+    border-radius: 30px;
+    transition: .5s;
+}
+.inputGroup{
+    top: 180px;
+    position: absolute;
+    width: 280px;
+    transition: .5s;
+}
+.inputField{
+    width: 100%;
+    padding: 3% 0;
+    margin: 5px 0px;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid #555;
+    outline: none;
+    background: transparent;
+}
+.submitBtn{
+    width: 85%;
+    padding: 10px 30px;
+    cursor: pointer;
+    margin: auto;
+    background: linear-gradient(to right,#fff,#8FF3AF);
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+}
+#login{
+    left: 50px;
+}
+#register{
+    left: 450px;
+}
+
+
+/* footer */
+.footer-basic {
+    padding:40px 0;
+    background-color:#ffffff;
+    color:#4b4c4d;
+    display: block;
+  }
+  
+.footer-basic ul {
+    padding:0;
+    list-style:none;
+    text-align:center;
+    font-size:18px;
+    line-height:1.6;
+    margin-bottom:0;
+  }
+  
+.footer-basic li {
+    padding:0 10px;
+  }
+  
+.footer-basic ul a {
+    color:inherit;
+    text-decoration:none;
+    opacity:0.8;
+  }
+  
+.footer-basic ul a:hover {
+    opacity:1;
+  }
+  
+.footer-basic .social {
+    text-align:center;
+    padding-bottom:25px;
+  }
+  
+.footer-basic .social > a {
+    font-size:24px;
+    width:40px;
+    height:40px;
+    line-height:40px;
+    display:inline-block;
+    text-align:center;
+    border-radius:50%;
+    border:1px solid #ccc;
+    margin:0 8px;
+    color:inherit;
+    opacity:0.75;
+  }
+  
+.footer-basic .social > a:hover {
+    opacity:0.9;
+  }
+  
+.footer-basic .copyright {
+    margin-top:15px;
+    text-align:center;
+    font-size:13px;
+    color:#aaa;
+    margin-bottom:0;
+  }
+
+.heading{
+    border-bottom: 5px double #8FF3AF;
+}
+
+h3{
+    color: #555;
+    margin-top: 10px;
+}
+
+/*media query for menu*/
+
+@media (max-width: 1200px) {
+    nav ul{
+        position: absolute;
+        top: 100px;
+        margin-top: 10px;
+        left: 0;
+        width: 100%;
+        background: #555;
+        overflow: hidden;
+        transition: max-height 500ms;
+        z-index: 999;
+ 
+    }
+    nav ul li{
+        display: block;
+        margin-right: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    } 
+    nav ul li a{
+        color: floralwhite;
+        font-weight: bold;
+    }
+    .list{
+        display: block;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 600px){
+    .row{
+        text-align: center;
+    }
+    .col-2, .vita-text{
+        flex-basis: 100%;
+    }
+}
+
+
+#shopping-cart {
+	margin: 40px;
+}
+
+#product-grid {
+	width: 100%;
+    padding: 15px 15px 15px;
+}
+
+#shopping-cart table {
+	width: 100%;
+	background-color: #F0F0F0;
+}
+
+#shopping-cart table td {
+	background-color: #FFFFFF;
+}
+
+.txt-heading {
+	color: #211a1a;
+	border-bottom: 1px solid #E0E0E0;
+	overflow: auto;
+}
+
+#btnEmpty {
+	background-color: #ffffff;
+	border: #d00000 1px solid;
+	padding: 5px 10px;
+	color: #d00000;
+	float: right;
+	text-decoration: none;
+	border-radius: 3px;
+	margin: 10px 0px;
+}
+
+#btnBuy {
+	background-color: #97e37a;
+	border: #074b18 1px solid;
+	padding: 5px 10px;
+	color: #074b18;
+	float: right;
+	text-decoration: none;
+	border-radius: 3px;
+	margin: 10px 0px;
+}
+
+.btnAddAction {
+    padding: 5px 10px;
+    margin-left: 5px;
+    background-color: #efefef;
+    border: #E0E0E0 1px solid;
+    color: #211a1a;
+    float: right;
+    text-decoration: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#product-grid .txt-heading {
+	margin-bottom: 18px;
+}
+
+.product-item {
+	display: inline-block;
+    width: 24%;
+	background: #ffffff;
+	padding: 15px 15px 15px;
+	border: #E0E0E0 1px solid;
+    min-width: 200px;
+}
+
+.product-image {
+	height: 100%;
+	width: 100%;
+	background-color: #FFF;
+}
+
+.clear-float {
+	clear: both;
+}
+
+.demo-input-box {
+	border-radius: 2px;
+	border: #CCC 1px solid;
+	padding: 2px 1px;
+}
+
+.tbl-cart {
+	font-size: 0.9em;
+}
+
+.tbl-cart th {
+	font-weight: normal;
+}
+
+.product-title {
+	margin-bottom: 20px;
+}
+
+.product-price {
+	float:left;
+}
+
+.cart-action {
+	float: right;
+}
+
+.product-quantity {
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: #E0E0E0 1px solid;
+}
+
+.product-tile-footer {
+    padding: 15px 15px 0px 15px;
+    overflow: auto;
+}
+
+.cart-item-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: #E0E0E0 1px solid;
+    padding: 5px;
+    vertical-align: middle;
+    margin-right: 15px;
+}
+.no-records {
+	text-align: center;
+	clear: both;
+	margin: 38px 0px;
+}
+.vita-text{
+    text-align: center;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+.vita-text p{
+    font-size: larger;
+    font-weight: bolder;
+}
+.vita-text h1{
+    font-weight: bold;
+}
+.main-banner{
+    margin: 0 auto;
+    width: 1200px;
+    height: 500px;
+    background-color: #fff;
+    overflow: hidden;
+    position: relative;
+}
+
+.main-banner #imgban3 {
+    background-image: url(imgs/banner3.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.main-banner #imgban2 {
+    background-image: url(imgs/banner2.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.main-banner #imgban1 {
+    background-image: url(imgs/banner1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.main-banner .imgban {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    transition: all ease-in-out 800ms;
+    -webkit-transition: all ease-in-out 800ms;
+    -moz-transition: all ease-in-out 800ms;
+    -o-transition: all ease-in-out 800ms;
+}
