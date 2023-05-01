@@ -1,32 +1,32 @@
 <?php
 
-/*
-TODO 
-
-*/
-
-
 include_once("dbeleres.php");
 
 $kapcsolat = mysqli_connect($adatbazisIP, $adatbazisUserName, $adatbazisJelszo, $adatbazisNev);
 
-if (!$kapcsolat) {
+if (!$kapcsolat)
+{
     echo "Nem sikerült a MySQL adatbázis vitashop adatbázishához csatlakozni.";
     exit;
-} else {
+} 
+else 
+{
     //sikeres kapcsolat, termék elmentése a purchases táblába
 
     $timestamp = date('Y-m-d H:i:s');
 
-    $parancs = "INSERT INTO purchases (PurchaseNumber, UserID, ProductID, ProductPrice, ProductQuantity, PurchaseDate) VALUES (1, " . $_SESSION['UserID'] . ", " . $item["ProductID"] . ", " . $item["ProductPrice"] . ", " . $item["quantity"] . ", '" . $timestamp . "')";
+    $parancs = "INSERT INTO purchases (PurchaseNumber, UserID, ProductID, ProductPrice, ProductQuantity, PurchaseDate) VALUES (" . $_SESSION['PurchaseNumber'] . ", " . $_SESSION['UserID'] . ", " . $item["ProductID"] . ", " . $item["ProductPrice"] . ", " . $item["quantity"] . ", '" . $timestamp . "')";
 
     $ertek = mysqli_query($kapcsolat, $parancs);
 
-    if (!$ertek) {
+    if (!$ertek)
+    {
         echo "A terméke elmentése nem sikeres<br>.";
         echo mysqli_error($mysqli);
         exit;
-    } else {
+    } 
+    else
+    {
         //echo "Sikeres termék elmentés<br>";
     }
 

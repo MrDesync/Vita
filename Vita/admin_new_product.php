@@ -8,7 +8,8 @@ $db_handle = new DBController();
 
 echo file_get_contents("header.html");
 
-if (!isset($_SESSION["UserID"])) {
+if (!isset($_SESSION["UserID"])) 
+{
     header("Location: regisztracio.php"); //ha nincs bejelntkezve, akkor átirányítjuk a belépésre.
 }
 ?>

@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<body>
 
 <?php
 	echo file_get_contents("header.html");
@@ -10,10 +14,6 @@
         <h2><?php echo "Ön sikeresen kijelentkezett!"?></h2>
 <?php
     }
-?>
-
-<?php
-echo file_get_contents("footer.html");
 ?>
  
     <script>
@@ -33,3 +33,6 @@ echo file_get_contents("footer.html");
             }
         }
     </script>
+<?php
+echo file_get_contents("footer.html");
+?>

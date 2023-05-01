@@ -1,12 +1,5 @@
 <?php
 
-/*
-TODO 
-Email formátum 
-Usernév és email nem szerepelhet 2x az db-ben. ell!     
-*/
-
-
 include_once("dbeleres.php");
 
 $ProductID = $_GET['ProductID'];
@@ -20,7 +13,8 @@ $ProductStatus = $_POST['ProductStatus'];
 
 $kapcsolat = mysqli_connect($adatbazisIP, $adatbazisUserName, $adatbazisJelszo, $adatbazisNev);
 
-if (!$kapcsolat) {
+if (!$kapcsolat) 
+{
     echo "Nem sikerült a MySQL adatbázis vitashop adatbázishához csatlakozni.";
     exit;
 }
@@ -28,7 +22,8 @@ if (!$kapcsolat) {
 $parancs = "UPDATE products SET ProductName='$ProductName', ProductPhoto='$ProductPhoto', ProductCode='$ProductCode', ProductDescription='$ProductDescription', ProductPrice='$ProductPrice', ProductCategory='$ProductCategory', ProductStatus='$ProductStatus' WHERE ProductID='$ProductID'";
 $ertek = mysqli_query($kapcsolat, $parancs);
 
-if (!$ertek) {
+if (!$ertek) 
+{
     echo "A regisztráció nem sikeres<br>.";
     echo mysqli_error($mysqli);
 }

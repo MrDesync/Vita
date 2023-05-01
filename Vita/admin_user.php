@@ -8,7 +8,8 @@ $db_handle = new DBController();
 
 echo file_get_contents("header.html");
 
-if (!isset($_SESSION["UserID"])) {
+if (!isset($_SESSION["UserID"])) 
+{
     header("Location: regisztracio.php"); //ha nincs bejelntkezve, akkor átirányítjuk a belépésre.
 }
 ?>
@@ -31,8 +32,10 @@ if (!isset($_SESSION["UserID"])) {
             </tr>
             <?php
             $user_array = $db_handle->runQuery("SELECT * FROM Users WHERE UserID = " . $_GET['UserID'] . "");
-            if (!empty($user_array)) {
-                foreach ($user_array as $key => $value) {
+            if (!empty($user_array)) 
+            {
+                foreach ($user_array as $key => $value) 
+                {
                     ?>
                     <form method="post" action="user_muv.php?UserID=<?php echo $user_array[$key]["UserID"]; ?>">
 

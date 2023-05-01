@@ -12,35 +12,49 @@
 	include_once("dbeleres.php");
 	$db_handle = new DBController();
 
-	if (!empty($_GET["action"])) {
-		switch ($_GET["action"]) {
+	if (!empty($_GET["action"])) 
+	{
+		switch ($_GET["action"]) 
+		{
 			case "add":
-				if (!empty($_POST["quantity"])) {
+				if (!empty($_POST["quantity"])) 
+				{
 					$productByCode = $db_handle->runQuery("SELECT * FROM Products WHERE ProductCode='" . $_GET["ProductCode"] . "'");
 					$itemArray = array($productByCode[0]["ProductCode"] => array('ProductID' => $productByCode[0]["ProductID"], 'ProductName' => $productByCode[0]["ProductName"], 'ProductCode' => $productByCode[0]["ProductCode"], 'quantity' => $_POST["quantity"], 'ProductPrice' => $productByCode[0]["ProductPrice"], 'ProductPhoto' => $productByCode[0]["ProductPhoto"]));
 
-					if (!empty($_SESSION["cart_item"])) {
-						if (in_array($productByCode[0]["ProductCode"], array_keys($_SESSION["cart_item"]))) {
-							foreach ($_SESSION["cart_item"] as $k => $v) {
-								if ($productByCode[0]["ProductCode"] == $k) {
-									if (empty($_SESSION["cart_item"][$k]["quantity"])) {
+					if (!empty($_SESSION["cart_item"])) 
+					{
+						if (in_array($productByCode[0]["ProductCode"], array_keys($_SESSION["cart_item"]))) 
+						{
+							foreach ($_SESSION["cart_item"] as $k => $v) 
+							{
+								if ($productByCode[0]["ProductCode"] == $k) 
+								{
+									if (empty($_SESSION["cart_item"][$k]["quantity"])) 
+									{
 										$_SESSION["cart_item"][$k]["quantity"] = 0;
 									}
 									$_SESSION["cart_item"][$k]["quantity"] += $_POST["quantity"];
 								}
 							}
-						} else {
+						} 
+						else 
+						{
 							$_SESSION["cart_item"] = array_merge($_SESSION["cart_item"], $itemArray);
 						}
-					} else {
+					} 
+					else 
+					{
 						$_SESSION["cart_item"] = $itemArray;
 					}
 				}
 				break;
 
 			case "remove":
-				if (!empty($_SESSION["cart_item"])) {
-					foreach ($_SESSION["cart_item"] as $k => $v) {
+				if (!empty($_SESSION["cart_item"])) 
+				{
+					foreach ($_SESSION["cart_item"] as $k => $v) 
+					{
 						if ($_GET["ProductCode"] == $k)
 							unset($_SESSION["cart_item"][$k]);
 						if (empty($_SESSION["cart_item"]))
@@ -52,24 +66,29 @@
 			case "buy":
 
 				//max PurchaseNumber lekéredéze
-	
-				$purchase_array = $db_handle->runQuery("SELECT MAX(PurchaseNumber) FROM Purchases");
+				$kapcsolat = mysqli_connect($adatbazisIP, $adatbazisUserName, $adatbazisJelszo, $adatbazisNev);
+				$parancs = mysqli_query($kapcsolat, "SELECT MAX(PurchaseNumber) FROM Purchases");
+				$ertek = mysqli_fetch_assoc($parancs);
 
-				print_r($purchase_array);
+				//echo $_SESSION['PurchaseNumber']+1;
 
+				$_SESSION['PurchaseNumber'] = $ertek['MAX(PurchaseNumber)']+1;
 
-
-				/*
 				foreach ($_SESSION["cart_item"] as $item){
 				$item_price = $item["quantity"]*$item["ProductPrice"];
 				//adatbázisba írás a cart_item SESSION sorai alapján
 				$timestamp = date('Y-m-d H:i:s');
 				include 'buy_muv.php';
 				}	
-				*/
+				?>
+				<h2>Sikeres vásárlás!</h2>
+				<?php
+				unset($_SESSION["cart_item"]);
+
+
 				break;
 
-			case "empty":
+				case "empty":
 				unset($_SESSION["cart_item"]);
 				break;
 		}
@@ -82,11 +101,13 @@
 		<?php //UserID lekérdezése. Ha be van jelentkezve visszaadja a UserID-t
 		
 
-		if (isset($_SESSION["UserID"])) {
+		if (isset($_SESSION["UserID"])) 
+		{
 			//ha be vagyunk lépve 
 			$user_array = $db_handle->runQuery("SELECT * FROM Users WHERE UserID='" . $_SESSION['UserID'] . "'");
-			//if (!empty($user_array)) { 
-			foreach ($user_array as $key => $value) {
+			
+			foreach ($user_array as $key => $value) 
+			{
 				?>
 				<div class="txt-heading">
 					<?php echo $user_array[$key]["UserName"]; ?> - Kosár
@@ -94,7 +115,9 @@
 				<?php
 			}
 
-		} else {
+		} 
+		else 
+		{
 			?>
 			<div class="txt-heading">
 				Nincs bejelentkezve - Kosár</div>
@@ -103,7 +126,9 @@
 		?>
 
 		<?php
-		if (isset($_SESSION["cart_item"])) {
+
+		if (isset($_SESSION["cart_item"])) 
+		{
 			$total_quantity = 0;
 			$total_price = 0;
 			?>
@@ -120,9 +145,11 @@
 						<th style="text-align:center;" width="5%">Eltávolítás</th>
 					</tr>
 					<?php
-					foreach ($_SESSION["cart_item"] as $item) {
+
+					foreach ($_SESSION["cart_item"] as $item)
+					 {
 						$item_price = $item["quantity"] * $item["ProductPrice"];
-						?>
+					?>
 						<tr>
 							<td><img src="<?php echo $item["ProductPhoto"]; ?>" class="cart-item-image" /><?php echo $item["ProductName"]; ?></td>
 							<td>
@@ -161,7 +188,9 @@
 			</table>
 
 			<?php
-		} else {
+		} 
+		else 
+		{
 			?>
 			<div class="no-records">Üres a kosara</div>
 			<?php
@@ -172,9 +201,11 @@
 			<div class="txt-heading">Termékek</div>
 			<?php
 			$product_array = $db_handle->runQuery("SELECT * FROM Products WHERE ProductStatus ORDER BY ProductID ASC");
-			if (!empty($product_array)) {
-				foreach ($product_array as $key => $value) {
-					?>
+			if (!empty($product_array))
+			{
+				foreach ($product_array as $key => $value) 
+				{
+			?>
 
 					<div class="product-item">
 						<form method="post"
@@ -204,11 +235,14 @@
 
 			menuItems.style.maxHeight = "0px";
 
-			function menuToggle() {
-				if (menuItems.style.maxHeight == "0px") {
+			function menuToggle() 
+			{
+				if (menuItems.style.maxHeight == "0px") 
+				{
 					menuItems.style.maxHeight = "500px"
 				}
-				else {
+				else 
+				{
 					menuItems.style.maxHeight = "0px"
 				}
 			}

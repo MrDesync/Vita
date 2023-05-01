@@ -1,11 +1,5 @@
 <?php
 
-/*
-TODO 
-
-*/
-
-
 include_once("dbeleres.php");
 
 $ProductName = $_POST['ProductName'];
@@ -18,7 +12,8 @@ $ProductStatus = $_POST['ProductStatus'];
 
 $kapcsolat = mysqli_connect($adatbazisIP, $adatbazisUserName, $adatbazisJelszo, $adatbazisNev);
 
-if (!$kapcsolat) {
+if (!$kapcsolat) 
+{
     echo "Nem sikerült a MySQL adatbázis vitashop adatbázishához csatlakozni.";
     exit;
 }
@@ -29,7 +24,8 @@ if (!$kapcsolat) {
 $parancs = "INSERT INTO products (ProductID, ProductName, ProductPhoto, ProductCode, ProductDescription, ProductPrice, ProductCategory, ProductStatus) VALUES (DEFAULT, '$ProductName', '$ProductPhoto', '$ProductCode', '$ProductDescription', '$ProductPrice', '$ProductCategory', '$ProductStatus')";
 $ertek = mysqli_query($kapcsolat, $parancs);
 
-if (!$ertek) {
+if (!$ertek)
+{
     echo "A termék elmentése nem sikeres<br>.";
     echo mysqli_error($mysqli);
     exit;
