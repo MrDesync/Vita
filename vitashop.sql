@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Máj 01. 21:13
--- Kiszolgáló verziója: 10.4.27-MariaDB
--- PHP verzió: 8.2.0
+-- Host: 127.0.0.1
+-- Generation Time: May 02, 2023 at 02:51 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,39 +18,46 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Adatbázis: `vitashop`
+-- Database: `vitashop`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `categories`
+-- Table structure for table `categories`
 --
 
 CREATE TABLE `categories` (
   `CategoryID` int(11) NOT NULL,
-  `CategoryName` varchar(30) NOT NULL
+  `CategoryName` varchar(30) COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`CategoryID`, `CategoryName`) VALUES
+(1, 'vitamin');
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
   `ProductID` int(100) NOT NULL,
-  `ProductName` varchar(100) NOT NULL,
-  `ProductCode` varchar(100) NOT NULL,
-  `ProductDescription` varchar(500) NOT NULL,
-  `ProductPhoto` varchar(255) NOT NULL,
+  `ProductName` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
+  `ProductCode` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
+  `ProductDescription` varchar(500) COLLATE utf8_hungarian_ci NOT NULL,
+  `ProductPhoto` varchar(255) COLLATE utf8_hungarian_ci NOT NULL,
   `ProductPrice` int(255) NOT NULL,
-  `ProductCategory` smallint(10) NOT NULL,
+  `ProductCategory` int(10) NOT NULL,
   `ProductStatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `products`
+-- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`ProductID`, `ProductName`, `ProductCode`, `ProductDescription`, `ProductPhoto`, `ProductPrice`, `ProductCategory`, `ProductStatus`) VALUES
@@ -64,13 +71,13 @@ INSERT INTO `products` (`ProductID`, `ProductName`, `ProductCode`, `ProductDescr
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `purchases`
+-- Table structure for table `purchases`
 --
 
 CREATE TABLE `purchases` (
   `PurchaseID` int(255) NOT NULL,
   `PurchaseNumber` int(255) NOT NULL,
-  `UserID` int(255) NOT NULL,
+  `UserID` int(100) NOT NULL,
   `ProductID` int(255) NOT NULL,
   `ProductPrice` int(255) NOT NULL,
   `ProductQuantity` int(11) NOT NULL,
@@ -78,16 +85,10 @@ CREATE TABLE `purchases` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `purchases`
+-- Dumping data for table `purchases`
 --
 
 INSERT INTO `purchases` (`PurchaseID`, `PurchaseNumber`, `UserID`, `ProductID`, `ProductPrice`, `ProductQuantity`, `PurchaseDate`) VALUES
-(2, 1, 3, 4, 3590, 4, '2023-04-23'),
-(3, 1, 3, 1, 1290, 1, '2023-04-23'),
-(4, 1, 3, 2, 1890, 1, '2023-04-23'),
-(5, 1, 3, 3, 1090, 1, '2023-04-23'),
-(6, 2, 3, 3, 1090, 3, '2023-04-23'),
-(7, 2, 3, 4, 3590, 1, '2023-04-23'),
 (8, 3, 18, 3, 1090, 2, '2023-05-01'),
 (9, 3, 18, 2, 1890, 2, '2023-05-01'),
 (10, 4, 18, 1, 1290, 1, '2023-05-01'),
@@ -96,24 +97,27 @@ INSERT INTO `purchases` (`PurchaseID`, `PurchaseNumber`, `UserID`, `ProductID`, 
 (13, 4, 18, 4, 3590, 1, '2023-05-01'),
 (14, 5, 18, 4, 3590, 4, '2023-05-01'),
 (15, 6, 18, 1, 1290, 1, '2023-05-01'),
-(16, 7, 18, 3, 1090, 1, '2023-05-01');
+(16, 7, 18, 3, 1090, 1, '2023-05-01'),
+(17, 8, 22, 2, 1890, 1, '2023-05-02'),
+(18, 8, 22, 3, 1090, 1, '2023-05-02'),
+(19, 9, 22, 3, 1090, 1, '2023-05-02');
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
   `UserID` int(100) NOT NULL,
-  `UserName` varchar(30) NOT NULL,
-  `UserPassword` varchar(100) NOT NULL,
-  `UserEmail` varchar(100) NOT NULL,
+  `UserName` varchar(30) COLLATE utf8_hungarian_ci NOT NULL,
+  `UserPassword` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
+  `UserEmail` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
   `UserType` tinyint(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`UserID`, `UserName`, `UserPassword`, `UserEmail`, `UserType`) VALUES
@@ -121,84 +125,79 @@ INSERT INTO `users` (`UserID`, `UserName`, `UserPassword`, `UserEmail`, `UserTyp
 (18, 'User', '$2y$10$75HJ/Dq6.o3i4u.DOT/to.MFUyuVuI8/f6jpTJAwFCsBXNjWTrfIK', 'user@user.hu', 1),
 (19, 'Zoltán', '$2y$10$gujgA5CACppSvbbHRJR89uUjA7LNwQwsAvNZ/2x1/bvknwoy5P3QC', 'zoli@index.hu', 1),
 (20, 'Erika', '$2y$10$AEjdNcwHfQ9boZqMFtFiPu7XPqLX70Jy1IkQUctUqJzZL7atBwzzS', 'era@freemail.hu', 1),
-(21, 'valami', '$2y$10$DlYK9OzAcrGy6fiF8fkhiOce9o/9AY9GenGsXbVIvWRizwLh91Ttu', 'valami@v.hu', 1);
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `usertypes`
---
-
-CREATE TABLE `usertypes` (
-  `UserTypeID` int(10) NOT NULL,
-  `UserTypeName` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+(21, 'valami', '$2y$10$DlYK9OzAcrGy6fiF8fkhiOce9o/9AY9GenGsXbVIvWRizwLh91Ttu', 'valami@v.hu', 1),
+(22, 'qwe', '$2y$10$9I6cCit.M.vf7WFvNrI2SuzDo4t9svucie6fgVsdsQKk1ZA538RzG', 'qwe@qwe.hu', 1);
 
 --
--- Indexek a kiírt táblákhoz
+-- Indexes for dumped tables
 --
 
 --
--- A tábla indexei `categories`
+-- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`CategoryID`);
 
 --
--- A tábla indexei `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`ProductID`);
+  ADD PRIMARY KEY (`ProductID`),
+  ADD KEY `ProductCategory` (`ProductCategory`);
 
 --
--- A tábla indexei `purchases`
+-- Indexes for table `purchases`
 --
 ALTER TABLE `purchases`
-  ADD PRIMARY KEY (`PurchaseID`);
+  ADD PRIMARY KEY (`PurchaseID`),
+  ADD KEY `UserID` (`UserID`,`ProductID`),
+  ADD KEY `ProductID` (`ProductID`);
 
 --
--- A tábla indexei `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`UserID`);
 
 --
--- A tábla indexei `usertypes`
---
-ALTER TABLE `usertypes`
-  ADD PRIMARY KEY (`UserTypeID`);
-
---
--- A kiírt táblák AUTO_INCREMENT értéke
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT a táblához `products`
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `ProductID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT a táblához `purchases`
+-- AUTO_INCREMENT for table `purchases`
 --
 ALTER TABLE `purchases`
-  MODIFY `PurchaseID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `PurchaseID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT a táblához `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `UserID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `UserID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- Megkötések a kiírt táblákhoz
+-- Constraints for dumped tables
 --
 
 --
--- Megkötések a táblához `usertypes`
+-- Constraints for table `products`
 --
-ALTER TABLE `usertypes`
-  ADD CONSTRAINT `usertypes_ibfk_1` FOREIGN KEY (`UserTypeID`) REFERENCES `users` (`UserID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`ProductCategory`) REFERENCES `categories` (`CategoryID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `purchases`
+--
+ALTER TABLE `purchases`
+  ADD CONSTRAINT `prod_id_fr` FOREIGN KEY (`ProductID`) REFERENCES `products` (`ProductID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `purchases_ibfk_1` FOREIGN KEY (`ProductID`) REFERENCES `products` (`ProductID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `purchases_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `users` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
